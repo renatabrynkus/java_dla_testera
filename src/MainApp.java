@@ -1,3 +1,4 @@
+import computer.Computer;
 import computer.Laptop;
 import computer.PC;
 
@@ -5,21 +6,19 @@ public class MainApp {
 
     public static void main(String[] args) {
 
-        PC officeComputer = new PC("Office computer", "HP", 500, 128);
-        Laptop gamingLaptop = new Laptop("XGames", "HP GAMES", 500, 256, 0);
+        Computer officeComputer = new PC("Office computer", "HP", 500, 128);
+        Computer gamingLaptop = new Laptop("XGames", "HP GAMES", 500, 256, 0);
 
-        officeComputer.switchOn();
-        System.out.println(officeComputer.getState());
+        System.out.println(gamingLaptop.volumeUp(100));
+        System.out.println(gamingLaptop.volumeUp(14));
+        System.out.println(gamingLaptop.volumeUp(15));
+        System.out.println(gamingLaptop.volumeDown(30));
+        System.out.println(gamingLaptop.volumeDown(150));
 
-        gamingLaptop.switchOn();
-        System.out.println(gamingLaptop.getState());
 
-        officeComputer.switchOn();
-        System.out.println(officeComputer.getState());
 
-        officeComputer.setPowerSupply(true);
-        officeComputer.switchOn();
-        System.out.println(officeComputer.getState());
+
+
 
     }
 }

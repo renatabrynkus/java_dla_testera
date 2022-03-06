@@ -1,19 +1,18 @@
 import model.Bug;
+import model.BugReporter;
 
 public class MainApp {
 
     public static void main(String[] args) {
 
-        Bug myFirstBug = new Bug("It is not possible to close the application", "tester@test.pl",
+        Bug myFirstBug = new Bug("It is not possible to close the application",
+                new BugReporter("Harry", "Potter", "hp@gmail.com"),
                 5);
 
-        myFirstBug.showAllInfo();
+        myFirstBug.setIsBugClosed(true);
+        System.out.println(myFirstBug);
 
-        myFirstBug.setBugDescription("App not working");
-        myFirstBug.setEmail("test@com");
-        myFirstBug.setPriority(3);
 
-        myFirstBug.showAllInfo();
 
 
 

@@ -1,14 +1,14 @@
 package model;
 
-public class Bug {
+public class Bug implements ConsoleNotification {
     private String bugDescription;
-    private String email;
+    private BugReporter bugReporter;
     private int priority;
     private boolean isBugClosed;
 
-    public Bug(String bugDescription, String email, int priority) {
+    public Bug(String bugDescription, BugReporter bugReporter, int priority) {
         this.bugDescription = bugDescription;
-        this.email = email;
+        this.bugReporter = bugReporter;
         this.priority = priority;
         this.isBugClosed = false;
     }
@@ -26,16 +26,12 @@ public class Bug {
         }
     }
 
-    public String getEmail() {
-        return email;
+    public BugReporter getBugReporter() {
+        return bugReporter;
     }
 
-    public void setEmail(String email) {
-        if (!email.contains("@")) {
-            System.out.println("Please enter a valid email address");
-        } else {
-            this.email = email;
-        }
+    public void setBugReporter(BugReporter bugReporter) {
+        this.bugReporter = bugReporter;
     }
 
     public int getPriority() {
@@ -50,19 +46,31 @@ public class Bug {
         }
     }
 
-
-    // additional methods
-    public void showAllInfo() {
-        System.out.println("Bug description is: " + bugDescription + ", a person who reported is: " + email
-                + ", " + "bug priority is: " + priority + ", is this bug closed: " + isBugClosed + ".");
+    public boolean getIsBugClosed(){
+        return isBugClosed;
     }
 
-    public void showWhoReportedBug() {
+    public void setIsBugClosed(boolean isBugClosed){
+        this.isBugClosed = isBugClosed;
+        notifyStatusChange();
+    }
 
-        System.out.println("The person who reported a bug is " + email);
+    @Override
+    public void notifyStatusChange() {
+        System.out.println("There was a change of bug status");
     }
 
     public void showBugStatus() {
         System.out.println("Is the bug closed? " + isBugClosed);
+    }
+
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "bugDescription='" + bugDescription + '\'' +
+                ", bugReporter=" + bugReporter +
+                ", priority=" + priority +
+                ", isBugClosed=" + isBugClosed +
+                '}';
     }
 }

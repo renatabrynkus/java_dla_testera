@@ -1,6 +1,8 @@
 package model;
 
-public class Bug {
+import java.util.Objects;
+
+public class Bug implements Comparable<Bug> {
     private String bugDescription;
     private String email;
     private int priority;
@@ -64,5 +66,34 @@ public class Bug {
 
     public void showBugStatus() {
         System.out.println("Is the bug closed? " + isBugClosed);
+    }
+
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "bugDescription='" + bugDescription + '\'' +
+                ", email='" + email + '\'' +
+                ", priority=" + priority +
+                ", isBugClosed=" + isBugClosed +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bug bug = (Bug) o;
+        return priority == bug.priority && isBugClosed == bug.isBugClosed && Objects.equals(bugDescription, bug.bugDescription) && Objects.equals(email, bug.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bugDescription, email, priority, isBugClosed);
+    }
+
+
+    @Override
+    public int compareTo(Bug bug) {
+        return this.getBugDescription().compareTo(bug.getBugDescription());
     }
 }
